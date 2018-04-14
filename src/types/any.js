@@ -1,1 +1,1 @@
-export default arg => true;
+export default testedArgument => true;

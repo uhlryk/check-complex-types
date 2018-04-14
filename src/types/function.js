@@ -1,1 +1,1 @@
-export default arg => typeof arg === "function";
+export default testedArgument => typeof testedArgument === "function";

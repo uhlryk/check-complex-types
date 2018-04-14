@@ -1,1 +1,1 @@
-export default arg => typeof arg === "boolean" || arg instanceof Boolean;
+export default testedArgument => typeof testedArgument === "boolean" || testedArgument instanceof Boolean;

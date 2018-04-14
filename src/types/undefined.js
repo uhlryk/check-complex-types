@@ -1,1 +1,1 @@
-export default arg => typeof arg === "undefined";
+export default testedArgument => typeof testedArgument === "undefined";

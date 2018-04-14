@@ -1,1 +1,1 @@
-export default arg => typeof arg === "string" || arg instanceof String;
+export default testedArgument => typeof testedArgument === "string" || testedArgument instanceof String;

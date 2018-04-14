@@ -1,1 +1,1 @@
-export default arg => typeof arg === "symbol";
+export default testedArgument => typeof testedArgument === "symbol";

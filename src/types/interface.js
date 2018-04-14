@@ -1,4 +1,5 @@
-import checkSingleCondition from "../checkCondition/checkSingleCondition";
-export default (arg, targetInterface = {}) =>
-    typeof arg === "object" &&
-    Object.keys(targetInterface).every(key => checkSingleCondition(targetInterface[key], arg[key]));
+export default (testedArgument, targetInterface = {}) =>
+    typeof testedArgument === "object" &&
+    Object.entries(targetInterface).every(([testedPropertyName, type]) =>
+        type.test(testedArgument[testedPropertyName])
+    );

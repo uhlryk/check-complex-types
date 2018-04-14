@@ -1,6 +1,6 @@
-export default arg =>
-    typeof arg === "object" &&
-    arg !== null &&
-    arg instanceof String === false &&
-    arg instanceof Number === false &&
-    arg instanceof Boolean === false;
+export default testedArgument =>
+    typeof testedArgument === "object" &&
+    testedArgument !== null &&
+    testedArgument instanceof String === false &&
+    testedArgument instanceof Number === false &&
+    testedArgument instanceof Boolean === false;

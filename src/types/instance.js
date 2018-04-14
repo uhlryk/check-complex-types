@@ -1,1 +1,1 @@
-export default (arg, targetClass) => arg instanceof targetClass;
+export default (testedArgument, targetClass) => testedArgument instanceof targetClass;

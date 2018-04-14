@@ -1,1 +1,1 @@
-export default arg => arg === null;
+export default testedArgument => testedArgument === null;
