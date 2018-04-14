@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uhlryk/function-overloader.git"
+    "url": "git+https://github.com/uhlryk/check-complex-types.git"
   },
   "keywords": [],
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uhlryk/function-overloader/issues"
+    "url": "https://github.com/uhlryk/check-complex-types/issues"
   },
-  "homepage": "https://github.com/uhlryk/function-overloader#readme",
+  "homepage": "https://github.com/uhlryk/check-complex-types#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
