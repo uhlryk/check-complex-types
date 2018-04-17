@@ -12,17 +12,30 @@ import symbolCondition from "./types/symbol";
 import undefinedCondition from "./types/undefined";
 import createTypeFactory from "./createTypeFactory";
 
+const NUMBER = createTypeFactory(numberCondition);
+const STRING = createTypeFactory(stringCondition);
+const OBJECT = createTypeFactory(objectCondition);
+const ARRAY = createTypeFactory(arrayCondition);
+const BOOLEAN = createTypeFactory(booleanCondition);
+const FUNCTION = createTypeFactory(functionCondition);
+const SYMBOL = createTypeFactory(symbolCondition);
+const UNDEFINED = createTypeFactory(undefinedCondition);
+const NULL = createTypeFactory(nullCondition);
+const ANY = createTypeFactory(anyCondition);
+const INSTANCE = createTypeFactory(instanceCondition);
+const INTERFACE = createTypeFactory(interfaceCondition);
+
 export default {
-    NUMBER: createTypeFactory(numberCondition),
-    STRING: createTypeFactory(stringCondition),
-    OBJECT: createTypeFactory(objectCondition),
-    ARRAY: createTypeFactory(arrayCondition),
-    BOOLEAN: createTypeFactory(booleanCondition),
-    FUNCTION: createTypeFactory(functionCondition),
-    SYMBOL: createTypeFactory(symbolCondition),
-    UNDEFINED: createTypeFactory(undefinedCondition),
-    NULL: createTypeFactory(nullCondition),
-    ANY: createTypeFactory(anyCondition),
-    INSTANCE: createTypeFactory(instanceCondition),
-    INTERFACE: createTypeFactory(interfaceCondition)
+    NUMBER,
+    STRING,
+    OBJECT,
+    ARRAY,
+    BOOLEAN,
+    FUNCTION,
+    SYMBOL,
+    UNDEFINED,
+    NULL,
+    ANY,
+    INSTANCE,
+    INTERFACE
 };

@@ -145,19 +145,32 @@ var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
+var STRING = (0, _createTypeFactory2.default)(_string2.default);
+var OBJECT = (0, _createTypeFactory2.default)(_object2.default);
+var ARRAY = (0, _createTypeFactory2.default)(_array2.default);
+var BOOLEAN = (0, _createTypeFactory2.default)(_boolean2.default);
+var FUNCTION = (0, _createTypeFactory2.default)(_function2.default);
+var SYMBOL = (0, _createTypeFactory2.default)(_symbol2.default);
+var UNDEFINED = (0, _createTypeFactory2.default)(_undefined2.default);
+var NULL = (0, _createTypeFactory2.default)(_null2.default);
+var ANY = (0, _createTypeFactory2.default)(_any2.default);
+var INSTANCE = (0, _createTypeFactory2.default)(_instance2.default);
+var INTERFACE = (0, _createTypeFactory2.default)(_interface2.default);
+
 exports.default = {
-    NUMBER: (0, _createTypeFactory2.default)(_number2.default),
-    STRING: (0, _createTypeFactory2.default)(_string2.default),
-    OBJECT: (0, _createTypeFactory2.default)(_object2.default),
-    ARRAY: (0, _createTypeFactory2.default)(_array2.default),
-    BOOLEAN: (0, _createTypeFactory2.default)(_boolean2.default),
-    FUNCTION: (0, _createTypeFactory2.default)(_function2.default),
-    SYMBOL: (0, _createTypeFactory2.default)(_symbol2.default),
-    UNDEFINED: (0, _createTypeFactory2.default)(_undefined2.default),
-    NULL: (0, _createTypeFactory2.default)(_null2.default),
-    ANY: (0, _createTypeFactory2.default)(_any2.default),
-    INSTANCE: (0, _createTypeFactory2.default)(_instance2.default),
-    INTERFACE: (0, _createTypeFactory2.default)(_interface2.default)
+    NUMBER: NUMBER,
+    STRING: STRING,
+    OBJECT: OBJECT,
+    ARRAY: ARRAY,
+    BOOLEAN: BOOLEAN,
+    FUNCTION: FUNCTION,
+    SYMBOL: SYMBOL,
+    UNDEFINED: UNDEFINED,
+    NULL: NULL,
+    ANY: ANY,
+    INSTANCE: INSTANCE,
+    INTERFACE: INTERFACE
 };
 
 /***/ }),
