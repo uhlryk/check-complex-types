@@ -4,6 +4,7 @@ import booleanCondition from "./types/boolean";
 import functionCondition from "./types/function";
 import instanceCondition from "./types/instance";
 import interfaceCondition from "./types/interface";
+import orCondition from "./types/or";
 import nullCondition from "./types/null";
 import numberCondition from "./types/number";
 import objectCondition from "./types/object";
@@ -24,6 +25,7 @@ const NULL = createTypeFactory(nullCondition);
 const ANY = createTypeFactory(anyCondition);
 const INSTANCE = createTypeFactory(instanceCondition);
 const INTERFACE = createTypeFactory(interfaceCondition);
+const OR = createTypeFactory(orCondition);
 
 export default {
     NUMBER,
@@ -37,5 +39,6 @@ export default {
     NULL,
     ANY,
     INSTANCE,
-    INTERFACE
+    INTERFACE,
+    OR
 };

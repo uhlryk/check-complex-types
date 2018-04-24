@@ -115,31 +115,35 @@ var _interface = __webpack_require__(7);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _null = __webpack_require__(8);
+var _or = __webpack_require__(8);
+
+var _or2 = _interopRequireDefault(_or);
+
+var _null = __webpack_require__(9);
 
 var _null2 = _interopRequireDefault(_null);
 
-var _number = __webpack_require__(9);
+var _number = __webpack_require__(10);
 
 var _number2 = _interopRequireDefault(_number);
 
-var _object = __webpack_require__(10);
+var _object = __webpack_require__(11);
 
 var _object2 = _interopRequireDefault(_object);
 
-var _string = __webpack_require__(11);
+var _string = __webpack_require__(12);
 
 var _string2 = _interopRequireDefault(_string);
 
-var _symbol = __webpack_require__(12);
+var _symbol = __webpack_require__(13);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
-var _undefined = __webpack_require__(13);
+var _undefined = __webpack_require__(14);
 
 var _undefined2 = _interopRequireDefault(_undefined);
 
-var _createTypeFactory = __webpack_require__(14);
+var _createTypeFactory = __webpack_require__(15);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
@@ -157,6 +161,7 @@ var NULL = (0, _createTypeFactory2.default)(_null2.default);
 var ANY = (0, _createTypeFactory2.default)(_any2.default);
 var INSTANCE = (0, _createTypeFactory2.default)(_instance2.default);
 var INTERFACE = (0, _createTypeFactory2.default)(_interface2.default);
+var OR = (0, _createTypeFactory2.default)(_or2.default);
 
 exports.default = {
     NUMBER: NUMBER,
@@ -170,7 +175,8 @@ exports.default = {
     NULL: NULL,
     ANY: ANY,
     INSTANCE: INSTANCE,
-    INTERFACE: INTERFACE
+    INTERFACE: INTERFACE,
+    OR: OR
 };
 
 /***/ }),
@@ -288,7 +294,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (testedArgument) {
-  return testedArgument === null;
+  var typesToCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  return typesToCheck.some(function (type) {
+    return type.test(testedArgument);
+  });
 };
 
 /***/ }),
@@ -303,11 +312,26 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (testedArgument) {
-  return typeof testedArgument === "number" || testedArgument instanceof Number;
+  return testedArgument === null;
 };
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (testedArgument) {
+  return typeof testedArgument === "number" || testedArgument instanceof Number;
+};
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -324,7 +348,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -339,7 +363,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,7 +380,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -371,7 +395,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
