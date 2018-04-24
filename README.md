@@ -83,6 +83,33 @@ const someValue = "test";
 types.STRING.test(someValue);// equal true
 ```
 
+More complex example
+
+We would like to check if tested object has some specific properties with specific types
+
+```javascript
+import types from "check-complex-types";
+
+const someObject = {
+    someFunction: () => {},
+    someString: "test",
+    someValue: 1234,
+    someObject: {
+        someInnerString: "inner"
+    }
+};
+
+types.INTERFACE({
+    someFunction: types.FUNCTION,
+    someString: types.STRING,
+    someValue: types.NUMBER,
+    someObject: types.INTERFACE({
+        someInnerString: types.STRING
+    })
+}).test(someObject);// equal true
+```
+
+
 ## License
 
 MIT
