@@ -1,7 +1,7 @@
 {
   "name": "check-complex-types",
   "version": "1.2.1",
-  "description": "",
+  "description": "Checks if variable has specific type. It can be used for primitives but its power lies in complex types like interfaces and in optional logic.",
   "main": "dist/index.js",
   "scripts": {
     "prettier-all": "prettier --config .prettierrc --write 'src/**/*.js'",
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/uhlryk/check-complex-types.git"
   },
-  "keywords": [],
+  "keywords": ["types", "type", "validation", "complex types", "interface", "optional", "logic types", "objects"],
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "license": "MIT",
   "bugs": {
