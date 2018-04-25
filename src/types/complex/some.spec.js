@@ -1,6 +1,6 @@
 /* eslint-disable no-new-wrappers */
 import someType from "./some";
-import types from "../index";
+import types from "../../index";
 describe("SOME type", () => {
     it("returns false for empty array compared to undefined", () => {
         expect(someType()).to.be.false();

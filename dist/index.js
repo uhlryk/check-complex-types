@@ -111,44 +111,45 @@ var _instance = __webpack_require__(6);
 
 var _instance2 = _interopRequireDefault(_instance);
 
-var _interface = __webpack_require__(7);
-
-var _interface2 = _interopRequireDefault(_interface);
-
-var _some = __webpack_require__(8);
-
-var _some2 = _interopRequireDefault(_some);
-
-var _null = __webpack_require__(9);
+var _null = __webpack_require__(7);
 
 var _null2 = _interopRequireDefault(_null);
 
-var _number = __webpack_require__(10);
+var _number = __webpack_require__(8);
 
 var _number2 = _interopRequireDefault(_number);
 
-var _object = __webpack_require__(11);
+var _object = __webpack_require__(9);
 
 var _object2 = _interopRequireDefault(_object);
 
-var _string = __webpack_require__(12);
+var _string = __webpack_require__(10);
 
 var _string2 = _interopRequireDefault(_string);
 
-var _symbol = __webpack_require__(13);
+var _symbol = __webpack_require__(11);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
-var _undefined = __webpack_require__(14);
+var _undefined = __webpack_require__(12);
 
 var _undefined2 = _interopRequireDefault(_undefined);
 
-var _createTypeFactory = __webpack_require__(15);
+var _createTypeFactory = __webpack_require__(13);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
+var _interface = __webpack_require__(14);
+
+var _interface2 = _interopRequireDefault(_interface);
+
+var _some = __webpack_require__(15);
+
+var _some2 = _interopRequireDefault(_some);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// basic types
 var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
 var STRING = (0, _createTypeFactory2.default)(_string2.default);
 var OBJECT = (0, _createTypeFactory2.default)(_object2.default);
@@ -160,6 +161,8 @@ var UNDEFINED = (0, _createTypeFactory2.default)(_undefined2.default);
 var NULL = (0, _createTypeFactory2.default)(_null2.default);
 var ANY = (0, _createTypeFactory2.default)(_any2.default);
 var INSTANCE = (0, _createTypeFactory2.default)(_instance2.default);
+
+// complex types
 var INTERFACE = (0, _createTypeFactory2.default)(_interface2.default);
 var SOME = (0, _createTypeFactory2.default)(_some2.default);
 
@@ -264,22 +267,11 @@ exports.default = function (testedArgument, targetClass) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 exports.default = function (testedArgument) {
-    var targetInterface = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    return (typeof testedArgument === "undefined" ? "undefined" : _typeof(testedArgument)) === "object" && Object.entries(targetInterface).every(function (_ref) {
-        var _ref2 = _slicedToArray(_ref, 2),
-            testedPropertyName = _ref2[0],
-            type = _ref2[1];
-
-        return type.test(testedArgument[testedPropertyName]);
-    });
+  return testedArgument === null;
 };
 
 /***/ }),
@@ -294,44 +286,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (testedArgument) {
-  var typesToCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  return typesToCheck.some(function (type) {
-    return type.test(testedArgument);
-  });
-};
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (testedArgument) {
-  return testedArgument === null;
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (testedArgument) {
   return typeof testedArgument === "number" || testedArgument instanceof Number;
 };
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -348,7 +307,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -363,7 +322,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -380,7 +339,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -395,7 +354,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -418,6 +377,50 @@ function createType(typeCondition) {
     };
     return typeCheckFunction;
 }
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = function (testedArgument) {
+    var targetInterface = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return (typeof testedArgument === "undefined" ? "undefined" : _typeof(testedArgument)) === "object" && Object.entries(targetInterface).every(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            testedPropertyName = _ref2[0],
+            type = _ref2[1];
+
+        return type.test(testedArgument[testedPropertyName]);
+    });
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (testedArgument) {
+  var typesToCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  return typesToCheck.some(function (type) {
+    return type.test(testedArgument);
+  });
+};
 
 /***/ })
 /******/ ]);

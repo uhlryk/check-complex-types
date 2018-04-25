@@ -1,6 +1,6 @@
 /* eslint-disable no-new-wrappers */
 import interfaceType from "./interface";
-import types from "../index";
+import types from "../../index";
 describe("Interface type", () => {
     it("returns true for empty object compared to undefined", () => {
         expect(interfaceType({})).to.be.true();
