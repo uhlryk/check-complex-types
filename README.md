@@ -40,34 +40,77 @@ testedInterface.test({
 ```
 ## API
 
+### Types
 There are number of types:
 
-* **ANY** or **ANY()** for any type
-* **STRING** or **STRING()** for string primitive and string object
-* **ARRAY** or **ARRAY()** for arrays
-* **NUMBER** or **NUMBER()** for number primitive and number object
-* **OBJECT** or **OBJECT()** for objects with exception for null and primitive wrappers (primitive objects like Number, String, Boolean)
-* **FUNCTION** or **FUNCTION()** for functions
-* **BOOLEAN** or **BOOLEAN()** for boolean primitive and boolean object
-* **SYMBOL** or **SYMBOL()** for symbols
-* **UNDEFINED** or **UNDEFINED()** for undefined
-* **NULL** or **NULL()** for null
-* **INTERFACE(interfaceOptions)** for checking if tested object has interface properties with correct types
-  interfaceOptions is an object with property names and description
-  example of interface
-    ```
-     interfaceOptions = {
-         someProperty: NUMBER,
-         otherProperty: STRING
-     }
-    ```
-* **types.INSTANCE(class)** check if argument instance of `class`
-* **SOME(arrayOfTypes)** for checking if value has one or more types from array of types `arrayOfTypes`
+#### ANY
 
+for any type
+
+#### STRING
+for string primitive and string object
+
+#### ARRAY
+for arrays
+
+#### NUMBER
+for number primitive and number object
+
+#### OBJECT
+for objects with exception for null and primitive wrappers (primitive objects like Number, String, Boolean)
+#### FUNCTION
+for functions
+
+#### BOOLEAN
+for boolean primitive and boolean object
+
+#### SYMBOL
+for symbols
+
+#### UNDEFINED
+for undefined
+
+#### NULL
+for null
+
+#### INTERFACE(interfaceOptions)
+for checking if tested object has interface properties with correct types interfaceOptions is an object with property names and description
+
+example
+```javascript
+import types from "check-complex-types";
+
+const someObject = {
+    someFunction: () => {},
+    someString: "test",
+    someValue: 1234,
+    someObject: {
+        someInnerString: "inner"
+    }
+};
+
+types.INTERFACE({
+    someFunction: types.FUNCTION,
+    someString: types.STRING,
+    someValue: types.NUMBER,
+    someObject: types.INTERFACE({
+        someInnerString: types.STRING
+    })
+}).test(someObject);// equal true
+```
+
+#### INSTANCE(class)
+check if argument instance of `class`
+
+#### SOME(arrayOfTypes)
+for checking if value has one or more types from array of types `arrayOfTypes`
+
+
+### Types methods
 Each type can be used as function to pass additional properties or uses as is.
 Each type has methods
 
-### test(testedValue): boolean
+#### test(testedValue): boolean
 
 Method is used to check if **testedValue** match specific type. It will return **true** if it match or **false** otherwise.
 
