@@ -1,6 +1,6 @@
 {
   "name": "check-complex-types",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Checks if variable has specific type. It can be used for primitives but its power lies in complex types like interfaces and in optional logic.",
   "main": "dist/index.js",
   "scripts": {
