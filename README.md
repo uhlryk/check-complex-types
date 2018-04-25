@@ -52,7 +52,7 @@ There are number of types:
 * **SYMBOL** or **SYMBOL()** for symbols
 * **UNDEFINED** or **UNDEFINED()** for undefined
 * **NULL** or **NULL()** for null
-* **INTERFACE** or **INTERFACE(interfaceOptions)** for checking if tested object has interface properties with correct types
+* **INTERFACE(interfaceOptions)** for checking if tested object has interface properties with correct types
   interfaceOptions is an object with property names and description
   example of interface
     ```
@@ -62,7 +62,7 @@ There are number of types:
      }
     ```
 * **types.INSTANCE(class)** check if argument instance of `class`
-* **OR** or **OR(arrayOfTypes)** for checking if value has one or more types from array of types `arrayOfTypes`
+* **SOME(arrayOfTypes)** for checking if value has one or more types from array of types `arrayOfTypes`
 
 Each type can be used as function to pass additional properties or uses as is.
 Each type has methods

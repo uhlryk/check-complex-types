@@ -115,9 +115,9 @@ var _interface = __webpack_require__(7);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _or = __webpack_require__(8);
+var _some = __webpack_require__(8);
 
-var _or2 = _interopRequireDefault(_or);
+var _some2 = _interopRequireDefault(_some);
 
 var _null = __webpack_require__(9);
 
@@ -161,7 +161,7 @@ var NULL = (0, _createTypeFactory2.default)(_null2.default);
 var ANY = (0, _createTypeFactory2.default)(_any2.default);
 var INSTANCE = (0, _createTypeFactory2.default)(_instance2.default);
 var INTERFACE = (0, _createTypeFactory2.default)(_interface2.default);
-var OR = (0, _createTypeFactory2.default)(_or2.default);
+var SOME = (0, _createTypeFactory2.default)(_some2.default);
 
 exports.default = {
     NUMBER: NUMBER,
@@ -176,7 +176,7 @@ exports.default = {
     ANY: ANY,
     INSTANCE: INSTANCE,
     INTERFACE: INTERFACE,
-    OR: OR
+    SOME: SOME
 };
 
 /***/ }),
