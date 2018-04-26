@@ -47,8 +47,24 @@ There are number of types:
 
 for any type
 
+```javascript
+import types from "check-complex-types";
+
+types.ANY.test("testString");// equal true
+types.ANY.test(true);// equal true
+types.ANY.test(false);// equal true
+types.ANY.test(12345);// equal true
+```
+
 #### STRING
-for string primitive and string object
+for string primitives and string objects
+
+```javascript
+import types from "check-complex-types";
+
+types.STRING.test("testString");// equal true
+types.STRING.test(true);// equal false
+```
 
 #### ARRAY
 for arrays
@@ -124,13 +140,6 @@ types.EVERY([
     types.INTERFACE({ someProp: types.NUMBER }),
     types.INTERFACE({ otherProp: types.STRING })
 ]).test({ someProp: 123, otherProp: "test" }); // equal true
-```
-
-```javascript
-import types from "check-complex-types";
-
-types.SOME([types.STRING, types.NUMBER]).test("testString");// equal true
-types.SOME([types.STRING, types.NUMBER]).test(true);// equal false
 ```
 
 #### NOT(type)
