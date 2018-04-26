@@ -105,6 +105,23 @@ check if argument instance of `class`
 #### SOME(arrayOfTypes)
 for checking if value has one or more types from array of types `arrayOfTypes`
 
+```javascript
+import types from "check-complex-types";
+
+types.SOME([types.STRING, types.NUMBER]).test("testString");// equal true
+types.SOME([types.STRING, types.NUMBER]).test(true);// equal false
+```
+
+#### NOT(type)
+
+Accept different type and return true if provided type is false.
+
+```javascript
+import types from "check-complex-types";
+
+types.NOT(types.STRING).test("testString");// equal false
+types.NOT(types.NUMBER).test("testString");// equal true
+```
 
 ### Types methods
 Each type can be used as function to pass additional properties or uses as is.
