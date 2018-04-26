@@ -2,7 +2,7 @@
 import notType from "./not";
 import types from "../../index";
 describe("NOT type", () => {
-    it("returns false for empty type  compared to undefined", () => {
+    it("throws error for empty type  compared to undefined", () => {
         expect(() => notType()).to.throw("Type not provided");
     });
 

@@ -112,6 +112,27 @@ types.SOME([types.STRING, types.NUMBER]).test("testString");// equal true
 types.SOME([types.STRING, types.NUMBER]).test(true);// equal false
 ```
 
+#### EVERY(arrayOfTypes)
+for checking if value match all types in array of types `arrayOfTypes`
+
+```javascript
+import types from "check-complex-types";
+
+types.EVERY([types.STRING, types.NUMBER]).test("testString");// equal false
+
+types.EVERY([
+    types.INTERFACE({ someProp: types.NUMBER }),
+    types.INTERFACE({ otherProp: types.STRING })
+]).test({ someProp: 123, otherProp: "test" }); // equal true
+```
+
+```javascript
+import types from "check-complex-types";
+
+types.SOME([types.STRING, types.NUMBER]).test("testString");// equal true
+types.SOME([types.STRING, types.NUMBER]).test(true);// equal false
+```
+
 #### NOT(type)
 
 Accept different type and return true if provided type is false.
