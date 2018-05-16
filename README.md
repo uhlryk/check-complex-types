@@ -89,6 +89,17 @@ for undefined
 #### NULL
 for null
 
+#### OPTIONAL(optionalType)
+check if value has specific type `optionalType` or doesn't exist (is undefined)
+
+```javascript
+import types from "check-complex-types";
+
+types.OPTIONAL(types.NUMBER).test(1234);// equal true
+types.OPTIONAL(types.NUMBER).test();// equal true
+```
+
+
 #### INTERFACE(interfaceOptions)
 for checking if tested object has interface properties with correct types interfaceOptions is an object with property names and description
 

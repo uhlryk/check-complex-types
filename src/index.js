@@ -13,6 +13,9 @@ import createTypeFactory from "./createTypeFactory";
 
 import interfaceCondition from "./types/complex/interface";
 import someCondition from "./types/complex/some";
+import everyCondition from "./types/complex/every";
+import optionalCondition from "./types/complex/optional";
+import notCondition from "./types/complex/not";
 
 // basic types
 const NUMBER = createTypeFactory(numberCondition);
@@ -30,6 +33,9 @@ const INSTANCE = createTypeFactory(instanceCondition);
 // complex types
 const INTERFACE = createTypeFactory(interfaceCondition);
 const SOME = createTypeFactory(someCondition);
+const EVERY = createTypeFactory(everyCondition);
+const OPTIONAL = createTypeFactory(optionalCondition);
+const NOT = createTypeFactory(notCondition);
 
 export default {
     NUMBER,
@@ -44,5 +50,8 @@ export default {
     ANY,
     INSTANCE,
     INTERFACE,
-    SOME
+    SOME,
+    EVERY,
+    OPTIONAL,
+    NOT
 };

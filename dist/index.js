@@ -147,6 +147,18 @@ var _some = __webpack_require__(15);
 
 var _some2 = _interopRequireDefault(_some);
 
+var _every = __webpack_require__(16);
+
+var _every2 = _interopRequireDefault(_every);
+
+var _optional = __webpack_require__(17);
+
+var _optional2 = _interopRequireDefault(_optional);
+
+var _not = __webpack_require__(18);
+
+var _not2 = _interopRequireDefault(_not);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
@@ -165,6 +177,9 @@ var INSTANCE = (0, _createTypeFactory2.default)(_instance2.default);
 // complex types
 var INTERFACE = (0, _createTypeFactory2.default)(_interface2.default);
 var SOME = (0, _createTypeFactory2.default)(_some2.default);
+var EVERY = (0, _createTypeFactory2.default)(_every2.default);
+var OPTIONAL = (0, _createTypeFactory2.default)(_optional2.default);
+var NOT = (0, _createTypeFactory2.default)(_not2.default);
 
 exports.default = {
     NUMBER: NUMBER,
@@ -179,7 +194,10 @@ exports.default = {
     ANY: ANY,
     INSTANCE: INSTANCE,
     INTERFACE: INTERFACE,
-    SOME: SOME
+    SOME: SOME,
+    EVERY: EVERY,
+    OPTIONAL: OPTIONAL,
+    NOT: NOT
 };
 
 /***/ }),
@@ -420,6 +438,62 @@ exports.default = function (testedArgument) {
   return typesToCheck.some(function (type) {
     return type.test(testedArgument);
   });
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, typesToCheck) {
+    if (!typesToCheck || !typesToCheck.every || !typesToCheck.length) {
+        throw new TypeError("Non zero length array of types not provided");
+    }
+    return typesToCheck.every(function (type) {
+        return type.test(testedArgument);
+    });
+};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, optionalType) {
+    if (!optionalType || !optionalType.test) {
+        throw new TypeError("Type not provided");
+    }
+    return typeof testedArgument === "undefined" || optionalType.test(testedArgument);
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, typeNegation) {
+    if (!typeNegation || !typeNegation.test) {
+        throw new TypeError("Type not provided");
+    }
+    return !typeNegation.test(testedArgument);
 };
 
 /***/ })
