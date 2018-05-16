@@ -16,6 +16,7 @@ import someCondition from "./types/complex/some";
 import everyCondition from "./types/complex/every";
 import optionalCondition from "./types/complex/optional";
 import notCondition from "./types/complex/not";
+import noneCondition from "./types/complex/none";
 
 // basic types
 const NUMBER = createTypeFactory(numberCondition);
@@ -36,6 +37,7 @@ const SOME = createTypeFactory(someCondition);
 const EVERY = createTypeFactory(everyCondition);
 const OPTIONAL = createTypeFactory(optionalCondition);
 const NOT = createTypeFactory(notCondition);
+const NONE = createTypeFactory(noneCondition);
 
 export default {
     NUMBER,
@@ -53,5 +55,6 @@ export default {
     SOME,
     EVERY,
     OPTIONAL,
-    NOT
+    NOT,
+    NONE
 };

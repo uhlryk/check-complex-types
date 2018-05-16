@@ -164,6 +164,16 @@ types.NOT(types.STRING).test("testString");// equal false
 types.NOT(types.NUMBER).test("testString");// equal true
 ```
 
+#### NONE(arrayOfTypes)
+for checking if value not match any types in array of types `arrayOfTypes`
+
+```javascript
+import types from "check-complex-types";
+
+types.NONE([types.STRING, types.NUMBER]).test("testString");// equal false
+types.NONE([types.BOOLEAN, types.NUMBER]).test("testString");// equal true
+```
+
 ### Types methods
 Each type can be used as function to pass additional properties or uses as is.
 Each type has methods

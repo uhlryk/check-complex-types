@@ -159,6 +159,10 @@ var _not = __webpack_require__(18);
 
 var _not2 = _interopRequireDefault(_not);
 
+var _none = __webpack_require__(19);
+
+var _none2 = _interopRequireDefault(_none);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
@@ -180,6 +184,7 @@ var SOME = (0, _createTypeFactory2.default)(_some2.default);
 var EVERY = (0, _createTypeFactory2.default)(_every2.default);
 var OPTIONAL = (0, _createTypeFactory2.default)(_optional2.default);
 var NOT = (0, _createTypeFactory2.default)(_not2.default);
+var NONE = (0, _createTypeFactory2.default)(_none2.default);
 
 exports.default = {
     NUMBER: NUMBER,
@@ -197,7 +202,8 @@ exports.default = {
     SOME: SOME,
     EVERY: EVERY,
     OPTIONAL: OPTIONAL,
-    NOT: NOT
+    NOT: NOT,
+    NONE: NONE
 };
 
 /***/ }),
@@ -494,6 +500,26 @@ exports.default = function (testedArgument, typeNegation) {
         throw new TypeError("Type not provided");
     }
     return !typeNegation.test(testedArgument);
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, typesToCheck) {
+    if (!typesToCheck || !typesToCheck.every || !typesToCheck.length) {
+        throw new TypeError("Non zero length array of types not provided");
+    }
+    return !typesToCheck.some(function (type) {
+        return type.test(testedArgument);
+    });
 };
 
 /***/ })
