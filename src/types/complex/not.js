@@ -1,6 +1,6 @@
+import checkType from "../../validations/checkType";
+
 export default (testedArgument, typeNegation) => {
-    if (!typeNegation || !typeNegation.test) {
-        throw new TypeError("Type not provided");
-    }
+    checkType(typeNegation);
     return !typeNegation.test(testedArgument);
 };

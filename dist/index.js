@@ -70,15 +70,26 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+"use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (type) {
+    if (!type || !type.test || typeof type.test !== "function") {
+        throw new TypeError("Argument is not correct type");
+    }
+    return true;
+};
 
 /***/ }),
 /* 1 */
@@ -91,59 +102,107 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _any = __webpack_require__(2);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _checkType = __webpack_require__(0);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var checkIfArray = function checkIfArray(value) {
+    return (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && value instanceof Array;
+};
+var checkIfArrayNotEmpty = function checkIfArrayNotEmpty(value) {
+    return value.length > 0;
+};
+var checkIfArrayOfTypes = function checkIfArrayOfTypes(value) {
+    return value.every(_checkType2.default);
+};
+
+exports.default = function (arrayOfTypes) {
+    if (!checkIfArray(arrayOfTypes) || !checkIfArrayNotEmpty(arrayOfTypes)) {
+        throw new TypeError("Non zero length array of types not provided");
+    }
+    try {
+        checkIfArrayOfTypes(arrayOfTypes);
+    } catch (err) {
+        throw new TypeError("Array contain not correct type");
+    }
+    return true;
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(3);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _any = __webpack_require__(4);
 
 var _any2 = _interopRequireDefault(_any);
 
-var _array = __webpack_require__(3);
+var _array = __webpack_require__(5);
 
 var _array2 = _interopRequireDefault(_array);
 
-var _boolean = __webpack_require__(4);
+var _boolean = __webpack_require__(6);
 
 var _boolean2 = _interopRequireDefault(_boolean);
 
-var _function = __webpack_require__(5);
+var _function = __webpack_require__(7);
 
 var _function2 = _interopRequireDefault(_function);
 
-var _instance = __webpack_require__(6);
+var _instance = __webpack_require__(8);
 
 var _instance2 = _interopRequireDefault(_instance);
 
-var _null = __webpack_require__(7);
+var _null = __webpack_require__(9);
 
 var _null2 = _interopRequireDefault(_null);
 
-var _number = __webpack_require__(8);
+var _number = __webpack_require__(10);
 
 var _number2 = _interopRequireDefault(_number);
 
-var _object = __webpack_require__(9);
+var _object = __webpack_require__(11);
 
 var _object2 = _interopRequireDefault(_object);
 
-var _string = __webpack_require__(10);
+var _string = __webpack_require__(12);
 
 var _string2 = _interopRequireDefault(_string);
 
-var _symbol = __webpack_require__(11);
+var _symbol = __webpack_require__(13);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
-var _undefined = __webpack_require__(12);
+var _undefined = __webpack_require__(14);
 
 var _undefined2 = _interopRequireDefault(_undefined);
 
-var _createTypeFactory = __webpack_require__(13);
+var _createTypeFactory = __webpack_require__(15);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
-var _interface = __webpack_require__(14);
+var _interface = __webpack_require__(16);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _some = __webpack_require__(15);
+var _some = __webpack_require__(17);
 
 var _some2 = _interopRequireDefault(_some);
 
@@ -207,7 +266,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -222,7 +281,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -239,7 +298,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -254,7 +313,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -269,7 +328,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -284,7 +343,7 @@ exports.default = function (testedArgument, targetClass) {
 };
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -299,7 +358,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -314,7 +373,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -331,7 +390,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -346,7 +405,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -363,7 +422,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -378,7 +437,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -403,7 +462,7 @@ function createType(typeCondition) {
 }
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -417,6 +476,12 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var _checkType = __webpack_require__(0);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (testedArgument) {
     var targetInterface = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return (typeof testedArgument === "undefined" ? "undefined" : _typeof(testedArgument)) === "object" && Object.entries(targetInterface).every(function (_ref) {
@@ -424,73 +489,9 @@ exports.default = function (testedArgument) {
             testedPropertyName = _ref2[0],
             type = _ref2[1];
 
+        (0, _checkType2.default)(type);
         return type.test(testedArgument[testedPropertyName]);
     });
-};
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _checkArrayOfTypes = __webpack_require__(16);
-
-var _checkArrayOfTypes2 = _interopRequireDefault(_checkArrayOfTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (testedArgument, typesToCheck) {
-    (0, _checkArrayOfTypes2.default)(typesToCheck);
-    return typesToCheck.some(function (type) {
-        return type.test(testedArgument);
-    });
-};
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _checkType = __webpack_require__(17);
-
-var _checkType2 = _interopRequireDefault(_checkType);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var checkIfArray = function checkIfArray(value) {
-    return (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && value instanceof Array;
-};
-var checkIfArrayNotEmpty = function checkIfArrayNotEmpty(value) {
-    return value.length > 0;
-};
-var checkIfArrayOfTypes = function checkIfArrayOfTypes(value) {
-    return value.every(_checkType2.default);
-};
-
-exports.default = function (arrayOfTypes) {
-    if (!checkIfArray(arrayOfTypes) || !checkIfArrayNotEmpty(arrayOfTypes)) {
-        throw new TypeError("Non zero length array of types not provided");
-    }
-    try {
-        checkIfArrayOfTypes(arrayOfTypes);
-    } catch (err) {
-        throw new TypeError("Array contain not correct type");
-    }
-    return true;
 };
 
 /***/ }),
@@ -504,11 +505,17 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-exports.default = function (type) {
-    if (!type.test || typeof type.test !== "function") {
-        throw new TypeError("Argument is not correct type");
-    }
-    return true;
+var _checkArrayOfTypes = __webpack_require__(1);
+
+var _checkArrayOfTypes2 = _interopRequireDefault(_checkArrayOfTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (testedArgument, typesToCheck) {
+    (0, _checkArrayOfTypes2.default)(typesToCheck);
+    return typesToCheck.some(function (type) {
+        return type.test(testedArgument);
+    });
 };
 
 /***/ }),
@@ -522,10 +529,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _checkArrayOfTypes = __webpack_require__(1);
+
+var _checkArrayOfTypes2 = _interopRequireDefault(_checkArrayOfTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (testedArgument, typesToCheck) {
-    if (!typesToCheck || !typesToCheck.every || !typesToCheck.length) {
-        throw new TypeError("Non zero length array of types not provided");
-    }
+    (0, _checkArrayOfTypes2.default)(typesToCheck);
     return typesToCheck.every(function (type) {
         return type.test(testedArgument);
     });
@@ -542,10 +553,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _checkType = __webpack_require__(0);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (testedArgument, optionalType) {
-    if (!optionalType || !optionalType.test) {
-        throw new TypeError("Type not provided");
-    }
+    (0, _checkType2.default)(optionalType);
     return typeof testedArgument === "undefined" || optionalType.test(testedArgument);
 };
 
@@ -560,10 +575,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _checkType = __webpack_require__(0);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (testedArgument, typeNegation) {
-    if (!typeNegation || !typeNegation.test) {
-        throw new TypeError("Type not provided");
-    }
+    (0, _checkType2.default)(typeNegation);
     return !typeNegation.test(testedArgument);
 };
 
@@ -578,10 +597,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _checkArrayOfTypes = __webpack_require__(1);
+
+var _checkArrayOfTypes2 = _interopRequireDefault(_checkArrayOfTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (testedArgument, typesToCheck) {
-    if (!typesToCheck || !typesToCheck.every || !typesToCheck.length) {
-        throw new TypeError("Non zero length array of types not provided");
-    }
+    (0, _checkArrayOfTypes2.default)(typesToCheck);
     return !typesToCheck.some(function (type) {
         return type.test(testedArgument);
     });

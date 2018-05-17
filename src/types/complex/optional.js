@@ -1,6 +1,5 @@
+import checkType from "../../validations/checkType";
 export default (testedArgument, optionalType) => {
-    if (!optionalType || !optionalType.test) {
-        throw new TypeError("Type not provided");
-    }
+    checkType(optionalType);
     return typeof testedArgument === "undefined" || optionalType.test(testedArgument);
 };

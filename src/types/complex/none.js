@@ -1,6 +1,6 @@
+import checkArrayOfTypes from "../../validations/checkArrayOfTypes";
+
 export default (testedArgument, typesToCheck) => {
-    if (!typesToCheck || !typesToCheck.every || !typesToCheck.length) {
-        throw new TypeError("Non zero length array of types not provided");
-    }
+    checkArrayOfTypes(typesToCheck);
     return !typesToCheck.some(type => type.test(testedArgument));
 };

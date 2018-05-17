@@ -3,7 +3,7 @@ import optionalType from "./optional";
 import types from "../../index";
 describe("OPTIONAL type", () => {
     it("throws error for empty type", () => {
-        expect(() => optionalType()).to.throw("Type not provided");
+        expect(() => optionalType()).to.throw("Argument is not correct type");
     });
 
     it("returns false when value has wrong type", () => {
