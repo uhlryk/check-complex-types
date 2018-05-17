@@ -2,12 +2,16 @@
 import someType from "./some";
 import types from "../../index";
 describe("SOME type", () => {
-    it("returns false for empty array compared to undefined", () => {
-        expect(someType()).to.be.false();
+    it("throws error for undefined types list", () => {
+        expect(() => someType()).to.throw("Non zero length array of types not provided");
     });
 
-    it("returns false for empty array compared to some value", () => {
-        expect(someType("test")).to.be.false();
+    it("throws error for empty type list", () => {
+        expect(() => someType(undefined, [])).to.throw("Non zero length array of types not provided");
+    });
+
+    it("throws error for list with wrong types", () => {
+        expect(() => someType(undefined, [{}])).to.throw("Array contain not correct type");
     });
 
     it("returns true for compared correct string with string type", () => {

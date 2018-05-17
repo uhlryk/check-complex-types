@@ -147,19 +147,19 @@ var _some = __webpack_require__(15);
 
 var _some2 = _interopRequireDefault(_some);
 
-var _every = __webpack_require__(16);
+var _every = __webpack_require__(18);
 
 var _every2 = _interopRequireDefault(_every);
 
-var _optional = __webpack_require__(17);
+var _optional = __webpack_require__(19);
 
 var _optional2 = _interopRequireDefault(_optional);
 
-var _not = __webpack_require__(18);
+var _not = __webpack_require__(20);
 
 var _not2 = _interopRequireDefault(_not);
 
-var _none = __webpack_require__(19);
+var _none = __webpack_require__(21);
 
 var _none2 = _interopRequireDefault(_none);
 
@@ -436,18 +436,83 @@ exports.default = function (testedArgument) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
-exports.default = function (testedArgument) {
-  var typesToCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  return typesToCheck.some(function (type) {
-    return type.test(testedArgument);
-  });
+var _checkArrayOfTypes = __webpack_require__(16);
+
+var _checkArrayOfTypes2 = _interopRequireDefault(_checkArrayOfTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (testedArgument, typesToCheck) {
+    (0, _checkArrayOfTypes2.default)(typesToCheck);
+    return typesToCheck.some(function (type) {
+        return type.test(testedArgument);
+    });
 };
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _checkType = __webpack_require__(17);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var checkIfArray = function checkIfArray(value) {
+    return (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && value instanceof Array;
+};
+var checkIfArrayNotEmpty = function checkIfArrayNotEmpty(value) {
+    return value.length > 0;
+};
+var checkIfArrayOfTypes = function checkIfArrayOfTypes(value) {
+    return value.every(_checkType2.default);
+};
+
+exports.default = function (arrayOfTypes) {
+    if (!checkIfArray(arrayOfTypes) || !checkIfArrayNotEmpty(arrayOfTypes)) {
+        throw new TypeError("Non zero length array of types not provided");
+    }
+    try {
+        checkIfArrayOfTypes(arrayOfTypes);
+    } catch (err) {
+        throw new TypeError("Array contain not correct type");
+    }
+    return true;
+};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (type) {
+    if (!type.test || typeof type.test !== "function") {
+        throw new TypeError("Argument is not correct type");
+    }
+    return true;
+};
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -467,7 +532,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -485,7 +550,7 @@ exports.default = function (testedArgument, optionalType) {
 };
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -503,7 +568,7 @@ exports.default = function (testedArgument, typeNegation) {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
