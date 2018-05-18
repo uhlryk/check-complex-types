@@ -56,7 +56,7 @@ types.ANY.test(false);// equal true
 types.ANY.test(12345);// equal true
 ```
 
-#### STRING
+#### STRING or STRING([conditions])
 for string primitives and string objects
 
 ```javascript
@@ -64,6 +64,17 @@ import types from "check-complex-types";
 
 types.STRING.test("testString");// equal true
 types.STRING.test(true);// equal false
+```
+##### string condtions
+
+###### minLength: positive number
+Check if string length is bigger then `minLength` value
+
+```javascript
+import types from "check-complex-types";
+
+types.STRING({ minLength: 3 }).test("testString");// equal true
+types.STRING({ minLength: 20 }).test("testString");// equal false
 ```
 
 #### ARRAY
