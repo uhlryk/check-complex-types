@@ -1,6 +1,6 @@
 const registeredConditions = {
     minLength: (testedArgument, minValue) => {
-        return testedArgument.length > minValue;
+        return testedArgument.length >= minValue;
     }
 };
 
