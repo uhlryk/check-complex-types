@@ -20,4 +20,13 @@ describe("String type", () => {
         expect(string({})).to.be.false();
         expect(string(true)).to.be.false();
     });
+
+    describe("min length condition", () => {
+        it("return false when string length is shorter then min value", () => {
+            expect(string("toshort", { minLength: 10 })).to.be.false();
+        });
+        it("return true when string length is longer then min value", () => {
+            expect(string("enoughLong", { minLength: 5 })).to.be.true();
+        });
+    });
 });
