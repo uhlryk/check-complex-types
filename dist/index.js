@@ -198,35 +198,35 @@ var _createTypeFactory = __webpack_require__(15);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
-var _interface = __webpack_require__(17);
+var _interface = __webpack_require__(16);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _some = __webpack_require__(18);
+var _some = __webpack_require__(17);
 
 var _some2 = _interopRequireDefault(_some);
 
-var _every = __webpack_require__(19);
+var _every = __webpack_require__(18);
 
 var _every2 = _interopRequireDefault(_every);
 
-var _optional = __webpack_require__(20);
+var _optional = __webpack_require__(19);
 
 var _optional2 = _interopRequireDefault(_optional);
 
-var _not = __webpack_require__(21);
+var _not = __webpack_require__(20);
 
 var _not2 = _interopRequireDefault(_not);
 
-var _none = __webpack_require__(22);
+var _none = __webpack_require__(21);
 
 var _none2 = _interopRequireDefault(_none);
 
-var _maxLength = __webpack_require__(23);
+var _maxLength = __webpack_require__(22);
 
 var _maxLength2 = _interopRequireDefault(_maxLength);
 
-var _minLength = __webpack_require__(24);
+var _minLength = __webpack_require__(23);
 
 var _minLength2 = _interopRequireDefault(_minLength);
 
@@ -458,18 +458,32 @@ exports.default = function (testedArgument) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.default = createType;
+var extraConditionsResolver = function extraConditionsResolver(registeredConditions) {
+    return function (testedArgument) {
+        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        return Object.entries(conditions).every(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                conditionName = _ref2[0],
+                value = _ref2[1];
 
-var _extraConditionsResolver = __webpack_require__(16);
-
-var _extraConditionsResolver2 = _interopRequireDefault(_extraConditionsResolver);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+            var condition = registeredConditions[conditionName];
+            if (condition && typeof condition === "function") {
+                return condition(testedArgument, value);
+            } else {
+                return true;
+            }
+        });
+    };
+};
 
 var resolver = function resolver(typeCondition) {
     var extraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return function (testedArgument, typeInput) {
-        var resolveExtraConditions = (0, _extraConditionsResolver2.default)(extraConditions);
+        var resolveExtraConditions = extraConditionsResolver(extraConditions);
         var typeConditionResult = typeCondition(testedArgument, typeInput);
         if (typeConditionResult) {
             return resolveExtraConditions(testedArgument, typeInput);
@@ -507,37 +521,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-exports.default = function (registeredConditions) {
-    return function (testedArgument) {
-        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        return Object.entries(conditions).every(function (_ref) {
-            var _ref2 = _slicedToArray(_ref, 2),
-                conditionName = _ref2[0],
-                value = _ref2[1];
-
-            var condition = registeredConditions[conditionName];
-            if (condition && typeof condition === "function") {
-                return condition(testedArgument, value);
-            } else {
-                return true;
-            }
-        });
-    };
-};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _checkType = __webpack_require__(0);
@@ -559,7 +542,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -583,7 +566,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -607,7 +590,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -629,7 +612,7 @@ exports.default = function (testedArgument, optionalType) {
 };
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -651,7 +634,7 @@ exports.default = function (testedArgument, typeNegation) {
 };
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,7 +658,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -690,7 +673,7 @@ exports.default = function (testedArgument, maxValue) {
 };
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
