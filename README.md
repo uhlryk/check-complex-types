@@ -77,6 +77,16 @@ types.STRING({ minLength: 3 }).test("testString");// equal true
 types.STRING({ minLength: 20 }).test("testString");// equal false
 ```
 
+###### maxLength: positive number
+Check if string length is shorter then `maxLength` value
+
+```javascript
+import types from "check-complex-types";
+
+types.STRING({ maxLength: 20 }).test("testString");// equal true
+types.STRING({ maxLength: 3 }).test("testString");// equal false
+```
+
 #### ARRAY
 for arrays
 

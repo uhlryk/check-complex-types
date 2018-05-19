@@ -405,6 +405,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 var registeredConditions = {
     minLength: function minLength(testedArgument, minValue) {
         return testedArgument.length >= minValue;
+    },
+    maxLength: function maxLength(testedArgument, maxValue) {
+        return testedArgument.length <= maxValue;
     }
 };
 

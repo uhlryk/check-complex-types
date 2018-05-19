@@ -29,4 +29,13 @@ describe("String type", () => {
             expect(string("enoughLong", { minLength: 5 })).to.be.true();
         });
     });
+
+    describe("max length condition", () => {
+        it("return false when string length is longer then max value", () => {
+            expect(string("tolong", { maxLength: 3 })).to.be.false();
+        });
+        it("return true when string length is longer then min value", () => {
+            expect(string("enoughLong", { maxLength: 15 })).to.be.true();
+        });
+    });
 });
