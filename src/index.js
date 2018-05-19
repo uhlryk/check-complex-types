@@ -1,3 +1,4 @@
+// import types
 import anyCondition from "./types/basic/any";
 import arrayCondition from "./types/basic/array";
 import booleanCondition from "./types/basic/boolean";
@@ -18,9 +19,13 @@ import optionalCondition from "./types/complex/optional";
 import notCondition from "./types/complex/not";
 import noneCondition from "./types/complex/none";
 
+// import conditions
+import maxLength from "./extraConditions/maxLength";
+import minLength from "./extraConditions/minLength";
+
 // basic types
 const NUMBER = createTypeFactory(numberCondition);
-const STRING = createTypeFactory(stringCondition);
+const STRING = createTypeFactory(stringCondition, { maxLength, minLength });
 const OBJECT = createTypeFactory(objectCondition);
 const ARRAY = createTypeFactory(arrayCondition);
 const BOOLEAN = createTypeFactory(booleanCondition);

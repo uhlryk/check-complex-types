@@ -3,13 +3,11 @@ import createTypeFactory from "./createTypeFactory";
 describe("createTypeFactory", () => {
     let sandbox;
     let conditionTypeStub;
-    let conditionTypeResponseStub;
     let inputStub;
     let testedArgumentStub;
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
-        conditionTypeResponseStub = sandbox.stub();
-        conditionTypeStub = sandbox.stub().returns(conditionTypeResponseStub);
+        conditionTypeStub = sandbox.stub().returns(true);
         inputStub = sandbox.stub();
         testedArgumentStub = sandbox.stub();
     });
@@ -23,7 +21,7 @@ describe("createTypeFactory", () => {
         expect(typeof createType).to.be.equal("function");
         const createTypeCondition = createType(inputStub);
         expect(createTypeCondition).to.have.property("test");
-        expect(createTypeCondition.test(testedArgumentStub)).to.be.equal(conditionTypeResponseStub);
+        expect(createTypeCondition.test(testedArgumentStub)).to.be.equal(true);
         expect(conditionTypeStub.withArgs(testedArgumentStub, inputStub).calledOnce).to.be.true();
     });
 });

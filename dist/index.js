@@ -198,35 +198,47 @@ var _createTypeFactory = __webpack_require__(15);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
-var _interface = __webpack_require__(16);
+var _interface = __webpack_require__(17);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _some = __webpack_require__(17);
+var _some = __webpack_require__(18);
 
 var _some2 = _interopRequireDefault(_some);
 
-var _every = __webpack_require__(18);
+var _every = __webpack_require__(19);
 
 var _every2 = _interopRequireDefault(_every);
 
-var _optional = __webpack_require__(19);
+var _optional = __webpack_require__(20);
 
 var _optional2 = _interopRequireDefault(_optional);
 
-var _not = __webpack_require__(20);
+var _not = __webpack_require__(21);
 
 var _not2 = _interopRequireDefault(_not);
 
-var _none = __webpack_require__(21);
+var _none = __webpack_require__(22);
 
 var _none2 = _interopRequireDefault(_none);
+
+var _maxLength = __webpack_require__(23);
+
+var _maxLength2 = _interopRequireDefault(_maxLength);
+
+var _minLength = __webpack_require__(24);
+
+var _minLength2 = _interopRequireDefault(_minLength);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
+
+
+// import conditions
+// import types
 var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
-var STRING = (0, _createTypeFactory2.default)(_string2.default);
+var STRING = (0, _createTypeFactory2.default)(_string2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default });
 var OBJECT = (0, _createTypeFactory2.default)(_object2.default);
 var ARRAY = (0, _createTypeFactory2.default)(_array2.default);
 var BOOLEAN = (0, _createTypeFactory2.default)(_boolean2.default);
@@ -397,39 +409,11 @@ exports.default = function (testedArgument) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var registeredConditions = {
-    minLength: function minLength(testedArgument, minValue) {
-        return testedArgument.length >= minValue;
-    },
-    maxLength: function maxLength(testedArgument, maxValue) {
-        return testedArgument.length <= maxValue;
-    }
-};
-
 exports.default = function (testedArgument) {
-    var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-    if (typeof testedArgument === "string" || testedArgument instanceof String) {
-        return Object.entries(conditions).every(function (_ref) {
-            var _ref2 = _slicedToArray(_ref, 2),
-                conditionName = _ref2[0],
-                value = _ref2[1];
-
-            var condition = registeredConditions[conditionName];
-            if (condition && typeof condition === "function") {
-                return condition(testedArgument, value);
-            } else {
-                return false;
-            }
-        });
-    } else {
-        return false;
-    }
+  return typeof testedArgument === "string" || testedArgument instanceof String;
 };
 
 /***/ }),
@@ -475,22 +459,74 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = createType;
-function createType(typeCondition) {
+
+var _extraConditionsResolver = __webpack_require__(16);
+
+var _extraConditionsResolver2 = _interopRequireDefault(_extraConditionsResolver);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var resolver = function resolver(typeCondition) {
+    var extraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return function (testedArgument, typeInput) {
+        var resolveExtraConditions = (0, _extraConditionsResolver2.default)(extraConditions);
+        var typeConditionResult = typeCondition(testedArgument, typeInput);
+        if (typeConditionResult) {
+            return resolveExtraConditions(testedArgument, typeInput);
+        } else {
+            return false;
+        }
+    };
+};
+
+function createType(typeCondition, extraConditions) {
+    var preparedResolver = resolver(typeCondition, extraConditions);
     var typeCheckFunction = function typeCheckFunction(typeInput) {
         return {
             test: function test(testedArgument) {
-                return typeCondition(testedArgument, typeInput);
+                return preparedResolver(testedArgument, typeInput);
             }
         };
     };
     typeCheckFunction.test = function (testedArgument) {
-        return typeCondition(testedArgument);
+        return preparedResolver(testedArgument);
     };
     return typeCheckFunction;
 }
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = function (registeredConditions) {
+    return function (testedArgument) {
+        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        return Object.entries(conditions).every(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                conditionName = _ref2[0],
+                value = _ref2[1];
+
+            var condition = registeredConditions[conditionName];
+            if (condition && typeof condition === "function") {
+                return condition(testedArgument, value);
+            } else {
+                return true;
+            }
+        });
+    };
+};
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -523,7 +559,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -547,7 +583,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -571,7 +607,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -593,7 +629,7 @@ exports.default = function (testedArgument, optionalType) {
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -615,7 +651,7 @@ exports.default = function (testedArgument, typeNegation) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -636,6 +672,36 @@ exports.default = function (testedArgument, typesToCheck) {
     return !typesToCheck.some(function (type) {
         return type.test(testedArgument);
     });
+};
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, maxValue) {
+    return testedArgument.length <= maxValue;
+};
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, minValue) {
+    return testedArgument.length >= minValue;
 };
 
 /***/ })
