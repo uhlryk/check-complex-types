@@ -462,7 +462,7 @@ Object.defineProperty(exports, "__esModule", {
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 exports.default = createType;
-var extraConditionsResolver = function extraConditionsResolver(registeredConditions) {
+var extraConditionsResolver = function extraConditionsResolver(registeredExtraConditions) {
     return function (testedArgument) {
         var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         return Object.entries(conditions).every(function (_ref) {
@@ -470,7 +470,7 @@ var extraConditionsResolver = function extraConditionsResolver(registeredConditi
                 conditionName = _ref2[0],
                 value = _ref2[1];
 
-            var condition = registeredConditions[conditionName];
+            var condition = registeredExtraConditions[conditionName];
             if (condition && typeof condition === "function") {
                 return condition(testedArgument, value);
             } else {
@@ -481,9 +481,9 @@ var extraConditionsResolver = function extraConditionsResolver(registeredConditi
 };
 
 var resolver = function resolver(typeCondition) {
-    var extraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var registeredExtraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return function (testedArgument, typeInput) {
-        var resolveExtraConditions = extraConditionsResolver(extraConditions);
+        var resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
         var typeConditionResult = typeCondition(testedArgument, typeInput);
         if (typeConditionResult) {
             return resolveExtraConditions(testedArgument, typeInput);
@@ -493,8 +493,8 @@ var resolver = function resolver(typeCondition) {
     };
 };
 
-function createType(typeCondition, extraConditions) {
-    var preparedResolver = resolver(typeCondition, extraConditions);
+function createType(typeCondition, registeredExtraConditions) {
+    var preparedResolver = resolver(typeCondition, registeredExtraConditions);
     var typeCheckFunction = function typeCheckFunction(typeInput) {
         return {
             test: function test(testedArgument) {

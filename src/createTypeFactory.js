@@ -1,6 +1,6 @@
-const extraConditionsResolver = registeredConditions => (testedArgument, conditions = {}) =>
+const extraConditionsResolver = registeredExtraConditions => (testedArgument, conditions = {}) =>
     Object.entries(conditions).every(([conditionName, value]) => {
-        const condition = registeredConditions[conditionName];
+        const condition = registeredExtraConditions[conditionName];
         if (condition && typeof condition === "function") {
             return condition(testedArgument, value);
         } else {
@@ -8,8 +8,8 @@ const extraConditionsResolver = registeredConditions => (testedArgument, conditi
         }
     });
 
-const resolver = (typeCondition, extraConditions = {}) => (testedArgument, typeInput) => {
-    const resolveExtraConditions = extraConditionsResolver(extraConditions);
+const resolver = (typeCondition, registeredExtraConditions = {}) => (testedArgument, typeInput) => {
+    const resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
     const typeConditionResult = typeCondition(testedArgument, typeInput);
     if (typeConditionResult) {
         return resolveExtraConditions(testedArgument, typeInput);
@@ -18,8 +18,8 @@ const resolver = (typeCondition, extraConditions = {}) => (testedArgument, typeI
     }
 };
 
-export default function createType(typeCondition, extraConditions) {
-    const preparedResolver = resolver(typeCondition, extraConditions);
+export default function createType(typeCondition, registeredExtraConditions) {
+    const preparedResolver = resolver(typeCondition, registeredExtraConditions);
     const typeCheckFunction = typeInput => ({
         test(testedArgument) {
             return preparedResolver(testedArgument, typeInput);
