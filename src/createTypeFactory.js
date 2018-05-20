@@ -10,7 +10,6 @@ const extraConditionsResolver = registeredExtraConditions => (testedArgument, co
 
 const resolver = (typeCondition, registeredExtraConditions = {}) => (testedArgument, typeInput) => {
     const resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
-    console.log(typeCondition.length);
     const typeConditionResult = typeCondition(testedArgument, typeInput);
     if (typeConditionResult) {
         return resolveExtraConditions(testedArgument, typeInput);

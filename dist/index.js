@@ -490,7 +490,6 @@ var resolver = function resolver(typeCondition) {
     var registeredExtraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return function (testedArgument, typeInput) {
         var resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
-        console.log(typeCondition.length);
         var typeConditionResult = typeCondition(testedArgument, typeInput);
         if (typeConditionResult) {
             return resolveExtraConditions(testedArgument, typeInput);
