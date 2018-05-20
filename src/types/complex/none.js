@@ -1,4 +1,4 @@
-import checkArrayOfTypes from "../../validations/checkArrayOfTypes";
+import checkArrayOfTypes from "../../validators/checkArrayOfTypes";
 
 export default (testedArgument, typesToCheck) => {
     checkArrayOfTypes(typesToCheck);

@@ -1,4 +1,4 @@
-import checkType from "../../validations/checkType";
+import checkType from "../../validators/checkType";
 
 export default (testedArgument, typeNegation) => {
     checkType(typeNegation);

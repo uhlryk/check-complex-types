@@ -3,11 +3,11 @@ import everyType from "./every";
 import types from "../../index";
 describe("EVERY type", () => {
     it("throws error for undefined types list  compared to undefined", () => {
-        expect(() => everyType()).to.throw("Non zero length array of types not provided");
+        expect(() => everyType()).to.throw("Only Non zero length array of types is accepted");
     });
 
     it("throws error for empty type list compared to undefined", () => {
-        expect(() => everyType(undefined, [])).to.throw("Non zero length array of types not provided");
+        expect(() => everyType(undefined, [])).to.throw("Only Non zero length array of types is accepted");
     });
 
     it("returns true value for comparing to single type in array and matched", () => {

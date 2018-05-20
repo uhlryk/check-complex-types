@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,8 +84,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _isType = __webpack_require__(2);
+
+var _isType2 = _interopRequireDefault(_isType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (type) {
-    if (!type || !type.test || typeof type.test !== "function") {
+    var result = (0, _isType2.default)(type);
+    if (!result) {
         throw new TypeError("Argument is not correct type");
     }
     return true;
@@ -102,45 +109,22 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _isArrayOfTypes = __webpack_require__(19);
 
-var _checkType = __webpack_require__(0);
-
-var _checkType2 = _interopRequireDefault(_checkType);
+var _isArrayOfTypes2 = _interopRequireDefault(_isArrayOfTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var checkIfArray = function checkIfArray(value) {
-    return (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && value instanceof Array;
-};
-var checkIfArrayNotEmpty = function checkIfArrayNotEmpty(value) {
-    return value.length > 0;
-};
-var checkIfArrayOfTypes = function checkIfArrayOfTypes(value) {
-    return value.every(_checkType2.default);
-};
-
 exports.default = function (arrayOfTypes) {
-    if (!checkIfArray(arrayOfTypes) || !checkIfArrayNotEmpty(arrayOfTypes)) {
-        throw new TypeError("Non zero length array of types not provided");
-    }
-    try {
-        checkIfArrayOfTypes(arrayOfTypes);
-    } catch (err) {
-        throw new TypeError("Array contain not correct type");
+    var result = (0, _isArrayOfTypes2.default)(arrayOfTypes);
+    if (!result) {
+        throw new TypeError("Only Non zero length array of types is accepted");
     }
     return true;
 };
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(3);
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -150,83 +134,105 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _any = __webpack_require__(4);
+exports.default = function (type) {
+    return !(!type || !type.test || typeof type.test !== "function");
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(4);
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _any = __webpack_require__(5);
 
 var _any2 = _interopRequireDefault(_any);
 
-var _array = __webpack_require__(5);
+var _array = __webpack_require__(6);
 
 var _array2 = _interopRequireDefault(_array);
 
-var _boolean = __webpack_require__(6);
+var _boolean = __webpack_require__(7);
 
 var _boolean2 = _interopRequireDefault(_boolean);
 
-var _function = __webpack_require__(7);
+var _function = __webpack_require__(8);
 
 var _function2 = _interopRequireDefault(_function);
 
-var _instance = __webpack_require__(8);
+var _instance = __webpack_require__(9);
 
 var _instance2 = _interopRequireDefault(_instance);
 
-var _null = __webpack_require__(9);
+var _null = __webpack_require__(10);
 
 var _null2 = _interopRequireDefault(_null);
 
-var _number = __webpack_require__(10);
+var _number = __webpack_require__(11);
 
 var _number2 = _interopRequireDefault(_number);
 
-var _object = __webpack_require__(11);
+var _object = __webpack_require__(12);
 
 var _object2 = _interopRequireDefault(_object);
 
-var _string = __webpack_require__(12);
+var _string = __webpack_require__(13);
 
 var _string2 = _interopRequireDefault(_string);
 
-var _symbol = __webpack_require__(13);
+var _symbol = __webpack_require__(14);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
-var _undefined = __webpack_require__(14);
+var _undefined = __webpack_require__(15);
 
 var _undefined2 = _interopRequireDefault(_undefined);
 
-var _createTypeFactory = __webpack_require__(15);
+var _createTypeFactory = __webpack_require__(16);
 
 var _createTypeFactory2 = _interopRequireDefault(_createTypeFactory);
 
-var _interface = __webpack_require__(16);
+var _interface = __webpack_require__(17);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _some = __webpack_require__(17);
+var _some = __webpack_require__(18);
 
 var _some2 = _interopRequireDefault(_some);
 
-var _every = __webpack_require__(18);
+var _every = __webpack_require__(20);
 
 var _every2 = _interopRequireDefault(_every);
 
-var _optional = __webpack_require__(19);
+var _optional = __webpack_require__(21);
 
 var _optional2 = _interopRequireDefault(_optional);
 
-var _not = __webpack_require__(20);
+var _not = __webpack_require__(22);
 
 var _not2 = _interopRequireDefault(_not);
 
-var _none = __webpack_require__(21);
+var _none = __webpack_require__(23);
 
 var _none2 = _interopRequireDefault(_none);
 
-var _maxLength = __webpack_require__(22);
+var _maxLength = __webpack_require__(24);
 
 var _maxLength2 = _interopRequireDefault(_maxLength);
 
-var _minLength = __webpack_require__(23);
+var _minLength = __webpack_require__(25);
 
 var _minLength2 = _interopRequireDefault(_minLength);
 
@@ -278,7 +284,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -293,7 +299,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -310,7 +316,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -325,7 +331,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -340,7 +346,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -355,7 +361,7 @@ exports.default = function (testedArgument, targetClass) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -370,7 +376,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -385,7 +391,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -402,7 +408,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -417,7 +423,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -434,7 +440,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -449,7 +455,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -484,6 +490,7 @@ var resolver = function resolver(typeCondition) {
     var registeredExtraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return function (testedArgument, typeInput) {
         var resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
+        console.log(typeCondition.length);
         var typeConditionResult = typeCondition(testedArgument, typeInput);
         if (typeConditionResult) {
             return resolveExtraConditions(testedArgument, typeInput);
@@ -509,7 +516,7 @@ function createType(typeCondition, registeredExtraConditions) {
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -542,7 +549,7 @@ exports.default = function (testedArgument) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -566,7 +573,40 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _isType = __webpack_require__(2);
+
+var _isType2 = _interopRequireDefault(_isType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var isArray = function isArray(value) {
+    return (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && value instanceof Array;
+};
+var isArrayNotEmpty = function isArrayNotEmpty(value) {
+    return value.length > 0;
+};
+
+exports.default = function (arrayOfTypes) {
+    if (!isArray(arrayOfTypes) || !isArrayNotEmpty(arrayOfTypes)) {
+        return false;
+    }
+    return arrayOfTypes.every(_isType2.default);
+};
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -590,7 +630,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -612,7 +652,7 @@ exports.default = function (testedArgument, optionalType) {
 };
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -634,7 +674,7 @@ exports.default = function (testedArgument, typeNegation) {
 };
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -658,7 +698,7 @@ exports.default = function (testedArgument, typesToCheck) {
 };
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -673,7 +713,7 @@ exports.default = function (testedArgument, maxValue) {
 };
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

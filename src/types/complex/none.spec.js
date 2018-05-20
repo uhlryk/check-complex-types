@@ -3,11 +3,11 @@ import noneType from "./none";
 import types from "../../index";
 describe("NONE type", () => {
     it("throws error for undefined types list", () => {
-        expect(() => noneType()).to.throw("Non zero length array of types not provided");
+        expect(() => noneType()).to.throw("Only Non zero length array of types is accepted");
     });
 
     it("throws error for empty type list", () => {
-        expect(() => noneType(undefined, [])).to.throw("Non zero length array of types not provided");
+        expect(() => noneType(undefined, [])).to.throw("Only Non zero length array of types is accepted");
     });
 
     it("returns true value for comparing to single type and is not matched", () => {

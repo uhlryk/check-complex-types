@@ -1,5 +1,7 @@
+import isType from "./isType";
 export default type => {
-    if (!type || !type.test || typeof type.test !== "function") {
+    const result = isType(type);
+    if (!result) {
         throw new TypeError("Argument is not correct type");
     }
     return true;
