@@ -489,10 +489,12 @@ var extraConditionsResolver = function extraConditionsResolver(registeredExtraCo
 var resolver = function resolver(typeCondition) {
     var registeredExtraConditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return function (testedArgument, typeInput) {
+        var extraCondition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
         var resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
         var typeConditionResult = typeCondition(testedArgument, typeInput);
         if (typeConditionResult) {
-            return resolveExtraConditions(testedArgument, typeInput);
+            return resolveExtraConditions(testedArgument, extraCondition);
         } else {
             return false;
         }
@@ -501,12 +503,19 @@ var resolver = function resolver(typeCondition) {
 
 function createType(typeCondition, registeredExtraConditions) {
     var preparedResolver = resolver(typeCondition, registeredExtraConditions);
+
     var typeCheckFunction = function typeCheckFunction(typeInput) {
-        return {
-            test: function test(testedArgument) {
-                return preparedResolver(testedArgument, typeInput);
-            }
+        var extraConditionFunction = function extraConditionFunction(extraCondition) {
+            return {
+                test: function test(testedArgument) {
+                    return preparedResolver(testedArgument, typeInput, extraCondition);
+                }
+            };
         };
+        extraConditionFunction.test = function (testedArgument) {
+            return preparedResolver(testedArgument, typeInput);
+        };
+        return extraConditionFunction;
     };
     typeCheckFunction.test = function (testedArgument) {
         return preparedResolver(testedArgument);

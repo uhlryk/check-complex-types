@@ -8,11 +8,15 @@ const extraConditionsResolver = registeredExtraConditions => (testedArgument, co
         }
     });
 
-const resolver = (typeCondition, registeredExtraConditions = {}) => (testedArgument, typeInput) => {
+const resolver = (typeCondition, registeredExtraConditions = {}) => (
+    testedArgument,
+    typeInput,
+    extraCondition = {}
+) => {
     const resolveExtraConditions = extraConditionsResolver(registeredExtraConditions);
     const typeConditionResult = typeCondition(testedArgument, typeInput);
     if (typeConditionResult) {
-        return resolveExtraConditions(testedArgument, typeInput);
+        return resolveExtraConditions(testedArgument, extraCondition);
     } else {
         return false;
     }
@@ -20,11 +24,18 @@ const resolver = (typeCondition, registeredExtraConditions = {}) => (testedArgum
 
 export default function createType(typeCondition, registeredExtraConditions) {
     const preparedResolver = resolver(typeCondition, registeredExtraConditions);
-    const typeCheckFunction = typeInput => ({
-        test(testedArgument) {
+
+    const typeCheckFunction = typeInput => {
+        const extraConditionFunction = extraCondition => ({
+            test(testedArgument) {
+                return preparedResolver(testedArgument, typeInput, extraCondition);
+            }
+        });
+        extraConditionFunction.test = testedArgument => {
             return preparedResolver(testedArgument, typeInput);
-        }
-    });
+        };
+        return extraConditionFunction;
+    };
     typeCheckFunction.test = testedArgument => {
         return preparedResolver(testedArgument);
     };
