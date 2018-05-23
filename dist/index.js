@@ -501,26 +501,38 @@ var resolver = function resolver(typeCondition) {
     };
 };
 
-function createType(typeCondition, registeredExtraConditions) {
-    var preparedResolver = resolver(typeCondition, registeredExtraConditions);
-
+function createTypeCheckFunction(preparedResolver) {
     var typeCheckFunction = function typeCheckFunction(typeInput) {
-        var extraConditionFunction = function extraConditionFunction(extraCondition) {
-            return {
-                test: function test(testedArgument) {
-                    return preparedResolver(testedArgument, typeInput, extraCondition);
-                }
-            };
+        return {
+            test: function test(testedArgument) {
+                return preparedResolver(testedArgument, typeInput);
+            },
+            args: function args(extraCondition) {
+                return {
+                    test: function test(testedArgument) {
+                        return preparedResolver(testedArgument, typeInput, extraCondition);
+                    }
+                };
+            }
         };
-        extraConditionFunction.test = function (testedArgument) {
-            return preparedResolver(testedArgument, typeInput);
-        };
-        return extraConditionFunction;
     };
     typeCheckFunction.test = function (testedArgument) {
         return preparedResolver(testedArgument);
     };
+    typeCheckFunction.args = function (extraCondition) {
+        return {
+            test: function test(testedArgument) {
+                return preparedResolver(testedArgument, null, extraCondition);
+            }
+        };
+    };
     return typeCheckFunction;
+}
+
+function createType(typeCondition, registeredExtraConditions) {
+    var preparedResolver = resolver(typeCondition, registeredExtraConditions);
+
+    return createTypeCheckFunction(preparedResolver);
 }
 
 /***/ }),

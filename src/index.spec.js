@@ -39,11 +39,11 @@ describe("index", () => {
             expect(
                 types
                     .INTERFACE({
-                        shortStringProp: types.STRING({
+                        shortStringProp: types.STRING.args({
                             maxlength: 10
                         }),
                         innerInterfaceProp: types.INTERFACE({
-                            innerLongStringProp: types.STRING()({
+                            innerLongStringProp: types.STRING.args({
                                 minLength: 5
                             })
                         }),

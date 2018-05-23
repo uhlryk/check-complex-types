@@ -22,22 +22,32 @@ const resolver = (typeCondition, registeredExtraConditions = {}) => (
     }
 };
 
-export default function createType(typeCondition, registeredExtraConditions) {
-    const preparedResolver = resolver(typeCondition, registeredExtraConditions);
-
-    const typeCheckFunction = typeInput => {
-        const extraConditionFunction = extraCondition => ({
-            test(testedArgument) {
-                return preparedResolver(testedArgument, typeInput, extraCondition);
-            }
-        });
-        extraConditionFunction.test = testedArgument => {
+function createTypeCheckFunction(preparedResolver) {
+    const typeCheckFunction = typeInput => ({
+        test(testedArgument) {
             return preparedResolver(testedArgument, typeInput);
-        };
-        return extraConditionFunction;
-    };
+        },
+        args(extraCondition) {
+            return {
+                test(testedArgument) {
+                    return preparedResolver(testedArgument, typeInput, extraCondition);
+                }
+            };
+        }
+    });
     typeCheckFunction.test = testedArgument => {
         return preparedResolver(testedArgument);
     };
+    typeCheckFunction.args = extraCondition => ({
+        test(testedArgument) {
+            return preparedResolver(testedArgument, null, extraCondition);
+        }
+    });
     return typeCheckFunction;
+}
+
+export default function createType(typeCondition, registeredExtraConditions) {
+    const preparedResolver = resolver(typeCondition, registeredExtraConditions);
+
+    return createTypeCheckFunction(preparedResolver);
 }
