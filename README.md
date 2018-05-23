@@ -56,7 +56,7 @@ types.ANY.test(false);// equal true
 types.ANY.test(12345);// equal true
 ```
 
-#### STRING or STRING([conditions])
+#### STRING or STRING.args([conditions])
 for string primitives and string objects
 
 ```javascript
@@ -65,7 +65,7 @@ import types from "check-complex-types";
 types.STRING.test("testString");// equal true
 types.STRING.test(true);// equal false
 ```
-##### string condtions
+##### string conditions
 
 ###### minLength: positive number
 Check if string length is bigger then `minLength` value
@@ -73,8 +73,8 @@ Check if string length is bigger then `minLength` value
 ```javascript
 import types from "check-complex-types";
 
-types.STRING({ minLength: 3 }).test("testString");// equal true
-types.STRING({ minLength: 20 }).test("testString");// equal false
+types.STRING.args({ minLength: 3 }).test("testString");// equal true
+types.STRING.args({ minLength: 20 }).test("testString");// equal false
 ```
 
 ###### maxLength: positive number
@@ -83,8 +83,8 @@ Check if string length is shorter then `maxLength` value
 ```javascript
 import types from "check-complex-types";
 
-types.STRING({ maxLength: 20 }).test("testString");// equal true
-types.STRING({ maxLength: 3 }).test("testString");// equal false
+types.STRING.args({ maxLength: 20 }).test("testString");// equal true
+types.STRING.args({ maxLength: 3 }).test("testString");// equal false
 ```
 
 #### ARRAY
@@ -214,6 +214,15 @@ import types from "check-complex-types";
 const someValue = "test";
 
 types.STRING.test(someValue);// equal true
+```
+
+#### args(conditions)
+
+Some types have additional conditions like min/max length and it can be set by this method.
+It returns object with method `test`.
+
+```javascript
+types.STRING.args(someConditions).test(someValue);// equal true
 ```
 
 More complex example
