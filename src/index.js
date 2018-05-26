@@ -27,7 +27,7 @@ import minLength from "./extraConditions/minLength";
 const NUMBER = createTypeFactory(numberCondition);
 const STRING = createTypeFactory(stringCondition, { maxLength, minLength });
 const OBJECT = createTypeFactory(objectCondition);
-const ARRAY = createTypeFactory(arrayCondition);
+const ARRAY = createTypeFactory(arrayCondition, { maxLength, minLength });
 const BOOLEAN = createTypeFactory(booleanCondition);
 const FUNCTION = createTypeFactory(functionCondition);
 const SYMBOL = createTypeFactory(symbolCondition);

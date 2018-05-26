@@ -246,7 +246,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
 var STRING = (0, _createTypeFactory2.default)(_string2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default });
 var OBJECT = (0, _createTypeFactory2.default)(_object2.default);
-var ARRAY = (0, _createTypeFactory2.default)(_array2.default);
+var ARRAY = (0, _createTypeFactory2.default)(_array2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default });
 var BOOLEAN = (0, _createTypeFactory2.default)(_boolean2.default);
 var FUNCTION = (0, _createTypeFactory2.default)(_function2.default);
 var SYMBOL = (0, _createTypeFactory2.default)(_symbol2.default);
