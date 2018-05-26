@@ -87,7 +87,7 @@ types.STRING.args({ maxLength: 20 }).test("testString");// equal true
 types.STRING.args({ maxLength: 3 }).test("testString");// equal false
 ```
 
-#### ARRAY([elementType])
+#### ARRAY([elementType]) or ARRAY([elementType]).args([conditions])
 checks if value is array. If `elementType` is provided it also checks if every array element has specified type.
 
 ```javascript
@@ -99,6 +99,28 @@ types.ARRAY.test(["testStringA", "something", true]);// equal true
 
 types.ARRAY(types.STRING).test(["testStringA", "something", true]);// equal false
 types.ARRAY(types.STRING).test(["testStringA", "something", "somethingElse"]);// equal true
+```
+
+##### array conditions
+
+###### minLength: positive number
+Check if array length is bigger then `minLength` value
+
+```javascript
+import types from "check-complex-types";
+
+types.ARRAY.args({ minLength: 3 }).test(["A", "B", "C", "D"]);// equal true
+types.ARRAY.args({ minLength: 20 }).test(["A", "B", "C", "D"]);// equal false
+```
+
+###### maxLength: positive number
+Check if array length is shorter then `maxLength` value
+
+```javascript
+import types from "check-complex-types";
+
+types.ARRAY.args({ maxLength: 20 }).test(["A", "B", "C", "D"]);// equal true
+types.ARRAY.args({ maxLength: 3 }).test(["A", "B", "C", "D"]);// equal false
 ```
 
 #### NUMBER
