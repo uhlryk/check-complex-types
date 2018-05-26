@@ -87,8 +87,19 @@ types.STRING.args({ maxLength: 20 }).test("testString");// equal true
 types.STRING.args({ maxLength: 3 }).test("testString");// equal false
 ```
 
-#### ARRAY
-for arrays
+#### ARRAY([elementType])
+checks if value is array. If `elementType` is provided it also checks if every array element has specified type.
+
+```javascript
+import types from "check-complex-types";
+
+types.ARRAY.test("testString");// equal false
+types.ARRAY.test(["testStringA", "something", true]);// equal true
+
+
+types.ARRAY(types.STRING).test(["testStringA", "something", true]);// equal false
+types.ARRAY(types.STRING).test(["testStringA", "something", "somethingElse"]);// equal true
+```
 
 #### NUMBER
 for number primitive and number object
@@ -121,8 +132,8 @@ types.OPTIONAL(types.NUMBER).test();// equal true
 ```
 
 
-#### INTERFACE(interfaceOptions)
-for checking if tested object has interface properties with correct types interfaceOptions is an object with property names and description
+#### INTERFACE(interface)
+for checking if tested object has interface properties with correct types interface is an object with property names and description
 
 example
 ```javascript

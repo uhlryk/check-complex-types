@@ -1,6 +1,6 @@
 // import types
 import anyCondition from "./types/basic/any";
-import arrayCondition from "./types/basic/array";
+import arrayCondition from "./types/complex/array";
 import booleanCondition from "./types/basic/boolean";
 import functionCondition from "./types/basic/function";
 import instanceCondition from "./types/basic/instance";

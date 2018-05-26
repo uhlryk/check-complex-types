@@ -306,13 +306,30 @@ exports.default = function (testedArgument) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-exports.default = function (testedArgument) {
-  return (typeof testedArgument === "undefined" ? "undefined" : _typeof(testedArgument)) === "object" && testedArgument instanceof Array;
+var _checkType = __webpack_require__(0);
+
+var _checkType2 = _interopRequireDefault(_checkType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (testedArgument, arrayElementType) {
+    if ((typeof testedArgument === "undefined" ? "undefined" : _typeof(testedArgument)) === "object" && testedArgument instanceof Array) {
+        if (arrayElementType) {
+            (0, _checkType2.default)(arrayElementType);
+            return testedArgument.every(function (element) {
+                return arrayElementType.test(element);
+            });
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
 };
 
 /***/ }),
