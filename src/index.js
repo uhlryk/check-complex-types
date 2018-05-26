@@ -22,10 +22,11 @@ import noneCondition from "./types/complex/none";
 // import conditions
 import maxLength from "./extraConditions/maxLength";
 import minLength from "./extraConditions/minLength";
+import equal from "./extraConditions/equal";
 
 // basic types
 const NUMBER = createTypeFactory(numberCondition);
-const STRING = createTypeFactory(stringCondition, { maxLength, minLength });
+const STRING = createTypeFactory(stringCondition, { maxLength, minLength, equal });
 const OBJECT = createTypeFactory(objectCondition);
 const ARRAY = createTypeFactory(arrayCondition, { maxLength, minLength });
 const BOOLEAN = createTypeFactory(booleanCondition);

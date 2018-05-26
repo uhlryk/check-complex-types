@@ -236,15 +236,19 @@ var _minLength = __webpack_require__(25);
 
 var _minLength2 = _interopRequireDefault(_minLength);
 
+var _equal = __webpack_require__(26);
+
+var _equal2 = _interopRequireDefault(_equal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
-
+var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
 
 // import conditions
 // import types
-var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
-var STRING = (0, _createTypeFactory2.default)(_string2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default });
+
+var STRING = (0, _createTypeFactory2.default)(_string2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default, equal: _equal2.default });
 var OBJECT = (0, _createTypeFactory2.default)(_object2.default);
 var ARRAY = (0, _createTypeFactory2.default)(_array2.default, { maxLength: _maxLength2.default, minLength: _minLength2.default });
 var BOOLEAN = (0, _createTypeFactory2.default)(_boolean2.default);
@@ -762,6 +766,21 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (testedArgument, minValue) {
     return testedArgument.length >= minValue;
+};
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, comparedValue) {
+    return testedArgument === comparedValue;
 };
 
 /***/ })

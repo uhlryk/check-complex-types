@@ -19,4 +19,14 @@ describe("String Conditions type", () => {
             expect(types.STRING.args({ maxLength: 15 }).test("enoughLong")).to.be.true();
         });
     });
+
+    describe("equal condition", () => {
+        it("return true when string is equal to defined value", () => {
+            expect(types.STRING.args({ equal: "someValue" }).test("someValue")).to.be.true();
+        });
+
+        it("return false when string is not equal to defined value", () => {
+            expect(types.STRING.args({ equal: "otherValue" }).test("someValue")).to.be.false();
+        });
+    });
 });

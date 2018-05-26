@@ -87,6 +87,16 @@ types.STRING.args({ maxLength: 20 }).test("testString");// equal true
 types.STRING.args({ maxLength: 3 }).test("testString");// equal false
 ```
 
+###### equal: string
+Check if string is equal to defined value
+
+```javascript
+import types from "check-complex-types";
+
+types.STRING.args({ equal: "testString" }).test("testString");// equal true
+types.STRING.args({ equal: "otherString" }).test("testString");// equal false
+```
+
 #### ARRAY([elementType]) or ARRAY([elementType]).args([conditions])
 checks if value is array. If `elementType` is provided it also checks if every array element has specified type.
 
