@@ -133,8 +133,26 @@ types.ARRAY.args({ maxLength: 20 }).test(["A", "B", "C", "D"]);// equal true
 types.ARRAY.args({ maxLength: 3 }).test(["A", "B", "C", "D"]);// equal false
 ```
 
-#### NUMBER
+#### NUMBER or NUMBER.args([conditions])
 for number primitive and number object
+
+```javascript
+import types from "check-complex-types";
+
+types.NUMBER.test(100);// equal true
+types.NUMBER.test(true);// equal false
+```
+##### number conditions
+
+###### equal: string
+Check if number is equal to defined value
+
+```javascript
+import types from "check-complex-types";
+
+types.NUMBER.args({ equal: 100 }).test(100);// equal true
+types.NUMBER.args({ equal: 200 }).test(100);// equal false
+```
 
 #### OBJECT
 for objects with exception for null and primitive wrappers (primitive objects like Number, String, Boolean)
