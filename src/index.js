@@ -25,7 +25,7 @@ import minLength from "./extraConditions/minLength";
 import equal from "./extraConditions/equal";
 
 // basic types
-const NUMBER = createTypeFactory(numberCondition);
+const NUMBER = createTypeFactory(numberCondition, { equal });
 const STRING = createTypeFactory(stringCondition, { maxLength, minLength, equal });
 const OBJECT = createTypeFactory(objectCondition);
 const ARRAY = createTypeFactory(arrayCondition, { maxLength, minLength });

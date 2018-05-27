@@ -243,7 +243,7 @@ var _equal2 = _interopRequireDefault(_equal);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
-var NUMBER = (0, _createTypeFactory2.default)(_number2.default);
+var NUMBER = (0, _createTypeFactory2.default)(_number2.default, { equal: _equal2.default });
 
 // import conditions
 // import types
