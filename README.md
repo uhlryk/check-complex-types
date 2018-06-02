@@ -154,6 +154,26 @@ types.NUMBER.args({ equal: 100 }).test(100);// equal true
 types.NUMBER.args({ equal: 200 }).test(100);// equal false
 ```
 
+###### minValue: string
+Check if number is greater than defined value
+
+```javascript
+import types from "check-complex-types";
+
+types.NUMBER.args({ minValue: 100 }).test(200);// equal true
+types.NUMBER.args({ minValue: 200 }).test(100);// equal false
+```
+
+###### maxValue: string
+Check if number is lower than defined value
+
+```javascript
+import types from "check-complex-types";
+
+types.NUMBER.args({ maxValue: 100 }).test(200);// equal false
+types.NUMBER.args({ maxValue: 200 }).test(100);// equal true
+```
+
 #### OBJECT
 for objects with exception for null and primitive wrappers (primitive objects like Number, String, Boolean)
 #### FUNCTION

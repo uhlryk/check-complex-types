@@ -236,14 +236,22 @@ var _minLength = __webpack_require__(25);
 
 var _minLength2 = _interopRequireDefault(_minLength);
 
-var _equal = __webpack_require__(26);
+var _minValue = __webpack_require__(26);
+
+var _minValue2 = _interopRequireDefault(_minValue);
+
+var _maxValue = __webpack_require__(27);
+
+var _maxValue2 = _interopRequireDefault(_maxValue);
+
+var _equal = __webpack_require__(28);
 
 var _equal2 = _interopRequireDefault(_equal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // basic types
-var NUMBER = (0, _createTypeFactory2.default)(_number2.default, { equal: _equal2.default });
+var NUMBER = (0, _createTypeFactory2.default)(_number2.default, { equal: _equal2.default, minValue: _minValue2.default, maxValue: _maxValue2.default });
 
 // import conditions
 // import types
@@ -770,6 +778,36 @@ exports.default = function (testedArgument, minValue) {
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, minValue) {
+    return testedArgument >= minValue;
+};
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (testedArgument, maxValue) {
+    return testedArgument <= maxValue;
+};
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
