@@ -29,4 +29,14 @@ describe("String Conditions type", () => {
             expect(types.STRING.args({ equal: "otherValue" }).test("someValue")).to.be.false();
         });
     });
+
+    describe("match condition", () => {
+        it("return true when string value match regexp", () => {
+            expect(types.STRING.args({ match: /^[0-9]*$/ }).test("1234567")).to.be.true();
+        });
+
+        it("return false when string not match regexp", () => {
+            expect(types.STRING.args({ match: /^[0-9]*$/ }).test("1234aaaa335")).to.be.false();
+        });
+    });
 });

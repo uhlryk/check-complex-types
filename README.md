@@ -97,6 +97,16 @@ types.STRING.args({ equal: "testString" }).test("testString");// equal true
 types.STRING.args({ equal: "otherString" }).test("testString");// equal false
 ```
 
+###### match: string
+Check if string match regexp
+
+```javascript
+import types from "check-complex-types";
+
+types.STRING.args({ match: /^[0-9]*$/ }).test("1234556");// equal true
+types.STRING.args({ match: /^[0-9]*$/ }).test("abcdef");// equal false
+```
+
 #### ARRAY([elementType]) or ARRAY([elementType]).args([conditions])
 checks if value is array. If `elementType` is provided it also checks if every array element has specified type.
 
@@ -306,7 +316,7 @@ It returns object with method `test`.
 types.STRING.args(someConditions).test(someValue);// equal true
 ```
 
-More complex example
+### More complex example
 
 We would like to check if tested object has some specific properties with specific types
 

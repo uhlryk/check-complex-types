@@ -25,10 +25,11 @@ import minLength from "./extraConditions/minLength";
 import minValue from "./extraConditions/minValue";
 import maxValue from "./extraConditions/maxValue";
 import equal from "./extraConditions/equal";
+import match from "./extraConditions/match";
 
 // basic types
 const NUMBER = createTypeFactory(numberCondition, { equal, minValue, maxValue });
-const STRING = createTypeFactory(stringCondition, { maxLength, minLength, equal });
+const STRING = createTypeFactory(stringCondition, { maxLength, minLength, equal, match });
 const OBJECT = createTypeFactory(objectCondition);
 const ARRAY = createTypeFactory(arrayCondition, { maxLength, minLength });
 const BOOLEAN = createTypeFactory(booleanCondition);
